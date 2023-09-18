@@ -1,0 +1,29 @@
+.header {
+    margin: 0 auto;
+}
+
+.nav {
+    display: flex;
+    border: solid 1px var(--main-color);
+    border-radius: 2rem;
+    width: 500px;
+    height: 3.5rem;
+    justify-content: space-around;
+    align-items: center;
+    margin: 1rem;
+}
+
+.ul {
+    color: var(--main-color);
+    display: flex;
+}
+
+.ul > li {
+    margin: 1rem 1.5rem;
+    cursor: pointer;
+    border-bottom: 1px solid transparent;
+}
+
+.ul > li:hover {
+    border-bottom: 1px solid var(--main-color);
+}
