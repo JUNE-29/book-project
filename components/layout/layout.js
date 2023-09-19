@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import MainNavigation from './main-navigation';
+import Header from './header';
 
 // import style from './layout.module.css';
 
@@ -8,7 +8,7 @@ export default function Layout(props) {
 
     return (
         <Fragment>
-            <MainNavigation />
+            <Header />
             <main>{props.children}</main>
         </Fragment>
     );

@@ -1,0 +1,45 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    color: var(--main-color);
+    margin-right: 2rem;
+    cursor: pointer;
+}
+
+.userName {
+    display: flex;
+}
+
+.downMenu {
+    position: relative;
+    display: none;
+}
+
+.downBox {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    background-color: var(--white-color);
+    width: 7.5rem;
+    right: 1px;
+    padding: 0.3rem;
+    -webkit-box-shadow: 0px 1px 26px -11px rgba(84, 82, 80, 0.47);
+    -moz-box-shadow: 0px 1px 26px -11px rgba(84, 82, 80, 0.47);
+    box-shadow: 0px 1px 26px -11px rgba(84, 82, 80, 0.47);
+}
+
+.downIcon {
+    color: var(--main-color);
+}
+
+.downIcon > svg {
+    fill: var(--main-color);
+}
+
+.menu {
+    padding: 0.4rem;
+}
+
+.menu:hover {
+    color: #111;
+}
