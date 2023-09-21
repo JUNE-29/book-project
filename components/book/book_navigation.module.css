@@ -1,0 +1,15 @@
+.nav {
+    margin: 2rem;
+    text-align: center;
+}
+
+.menu {
+    color: var(--main-color);
+    margin: 1rem 5rem;
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+}
+
+.menu:hover {
+    border-bottom: 1px solid var(--main-color);
+}
