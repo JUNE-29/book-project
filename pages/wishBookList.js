@@ -1,4 +1,5 @@
 import BookList from '@/components/book/bookList';
+import BookCounting from '@/components/book/book_counting';
 import BookNavigation from '@/components/book/book_navigation';
 import { getWishBook } from '@/lib/book-utils';
 
@@ -7,6 +8,7 @@ export default function WishBookList(props) {
     return (
         <>
             <BookNavigation />
+            <BookCounting books={books} />
             <h1>WishBooksList</h1>
             <BookList books={books} />
         </>

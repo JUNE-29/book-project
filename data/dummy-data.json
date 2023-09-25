@@ -12,6 +12,7 @@
             "url": "https://search.daum.net/search?w=bookpage&bookId=5807997&q=%EC%A7%80%EA%B5%AC+%EB%81%9D%EC%9D%98+%EC%98%A8%EC%8B%A4",
             "user_book_status": "done",
             "user_book_star_score": "4",
+            "user_book_create_date": "2023-09-01",
             "user_book_review": [
                 {
                     "book_review_id": "ub01-br01",
@@ -43,6 +44,7 @@
             "url": "https://search.daum.net/search?w=bookpage&bookId=541056&q=%ED%95%B4%EA%B0%80+%EC%A7%80%EB%8A%94+%EA%B3%B3%EC%9C%BC%EB%A1%9C",
             "user_book_status": "done",
             "user_book_star_score": "3.5",
+            "user_book_create_date": "2021-08-10",
             "user_book_review": [
                 {
                     "book_review_id": "ub02-br01",
@@ -81,6 +83,7 @@
             "url": "https://search.daum.net/search?w=bookpage&bookId=5881371&q=%EB%82%98%EC%9D%B8",
             "user_book_status": "done",
             "user_book_star_score": "4.5",
+            "user_book_create_date": "2022-05-29",
             "user_book_review": [
                 {
                     "book_review_id": "ub03-br01",
@@ -112,6 +115,7 @@
             "url": "https://search.daum.net/search?w=bookpage&bookId=5881371&q=%EB%82%98%EC%9D%B8",
             "user_book_status": "wish",
             "user_book_star_score": "",
+            "user_book_create_date": "2023-05-10",
             "user_book_review": [
                 {
                     "book_review_id": "",
@@ -143,6 +147,7 @@
             "url": "https://search.daum.net/search?w=bookpage&bookId=6410723&q=%EC%82%AC%EB%9D%BC%EC%A7%84+%EA%B0%9C%EB%B0%9C%EC%9E%90%EB%93%A4",
             "user_book_status": "wish",
             "user_book_star_score": "",
+            "user_book_create_date": "2023-07-05",
             "user_book_review": [
                 {
                     "book_review_id": "",
