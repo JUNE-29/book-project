@@ -1,8 +1,22 @@
 import { useRouter } from 'next/router';
 import styles from './book_counting.module.css';
 
-export default function BookCounting({ books }) {
+export default function BookCounting({ books, filteredDate }) {
     const router = useRouter();
+
+    const filterdYear = () => {
+        if (filteredDate) {
+            return (
+                <select>
+                    {filteredDate.map((date) => {
+                        const splitedDate = date.split('-');
+                        const year = splitedDate[0];
+                        return <option value={year}>{year}</option>;
+                    })}
+                </select>
+            );
+        }
+    };
 
     const counting = () => {
         if (router.pathname === '/readBookList') {
@@ -12,5 +26,10 @@ export default function BookCounting({ books }) {
         }
     };
 
-    return <div className={styles.counting}>{counting()}</div>;
+    return (
+        <div className={styles.counting}>
+            {filterdYear()}
+            {counting()}
+        </div>
+    );
 }
