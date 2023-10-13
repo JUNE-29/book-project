@@ -1,17 +1,34 @@
 import { useRouter } from 'next/router';
 import styles from './book_counting.module.css';
+import { useState } from 'react';
 
-export default function BookCounting({ books, filteredDate }) {
+export default function BookCounting({ books, filteredYear }) {
+    const [selectedOption, setselectedOption] = useState('모두보기');
     const router = useRouter();
 
-    const filterdYear = () => {
-        if (filteredDate) {
+    const selectOption = (event) => {
+        const selectedYear = event.target.value;
+        setselectedOption(selectedYear);
+        if (selectedYear === '모두보기') {
+            router.push(`/readBookList`);
+        } else {
+            router.push(`/readBookList/${selectedYear}`);
+        }
+    };
+
+    const getFilterdYear = () => {
+        if (filteredYear) {
             return (
-                <select>
-                    {filteredDate.map((date) => {
-                        const splitedDate = date.split('-');
-                        const year = splitedDate[0];
-                        return <option value={year}>{year}</option>;
+                <select value={selectedOption} onChange={selectOption}>
+                    <option vlaue='all' key='all'>
+                        모두보기
+                    </option>
+                    {filteredYear.map((year) => {
+                        return (
+                            <option value={year} key={year}>
+                                {year}
+                            </option>
+                        );
                     })}
                 </select>
             );
@@ -19,7 +36,10 @@ export default function BookCounting({ books, filteredDate }) {
     };
 
     const counting = () => {
-        if (router.pathname === '/readBookList') {
+        if (
+            router.pathname === '/readBookList' ||
+            router.pathname.includes('/readBookList')
+        ) {
             return <span>총 읽은 책 : {books.length}권</span>;
         } else if (router.pathname === '/wishBookList') {
             return <span>총 읽고 싶은 책 : {books.length}권</span>;
@@ -28,7 +48,7 @@ export default function BookCounting({ books, filteredDate }) {
 
     return (
         <div className={styles.counting}>
-            {filterdYear()}
+            {getFilterdYear()}
             {counting()}
         </div>
     );
