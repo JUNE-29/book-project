@@ -1,0 +1,17 @@
+.li {
+    background-color: var(--main-color);
+    max-width: 35rem;
+    padding: 1.25rem;
+    border-radius: 45px 0px 0px 45px;
+    color: var(--white-color);
+    cursor: pointer;
+}
+
+.second {
+    background-color: #7da48a;
+    margin-left: 1.8rem;
+}
+
+.third {
+    background-color: #a3c0ad;
+}

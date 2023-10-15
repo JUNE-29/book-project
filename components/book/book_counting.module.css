@@ -3,3 +3,10 @@
     text-align: center;
     color: var(--main-color);
 }
+
+.select {
+    border: none;
+    background: transparent;
+    color: var(--main-color);
+    font-size: small;
+}

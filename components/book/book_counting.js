@@ -19,18 +19,25 @@ export default function BookCounting({ books, filteredYear }) {
     const getFilterdYear = () => {
         if (filteredYear) {
             return (
-                <select value={selectedOption} onChange={selectOption}>
-                    <option vlaue='all' key='all'>
-                        모두보기
-                    </option>
-                    {filteredYear.map((year) => {
-                        return (
-                            <option value={year} key={year}>
-                                {year}
-                            </option>
-                        );
-                    })}
-                </select>
+                <>
+                    <select
+                        value={selectedOption}
+                        onChange={selectOption}
+                        className={styles.select}
+                    >
+                        <option vlaue='all' key='all'>
+                            모두보기
+                        </option>
+                        {filteredYear.map((year) => {
+                            return (
+                                <option value={year} key={year}>
+                                    {year}
+                                </option>
+                            );
+                        })}
+                    </select>
+                    <span> / </span>
+                </>
             );
         }
     };

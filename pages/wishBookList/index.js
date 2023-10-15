@@ -9,7 +9,6 @@ export default function WishBookList(props) {
         <>
             <BookNavigation />
             <BookCounting books={books} />
-            <h1>WishBooksList</h1>
             <BookList books={books} />
         </>
     );

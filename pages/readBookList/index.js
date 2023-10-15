@@ -9,7 +9,6 @@ export default function readBooksList(props) {
         <>
             <BookNavigation />
             <BookCounting books={books} filteredYear={filteredYear} />
-            <h1>ReadBooksList</h1>
             <BookList books={books} />
         </>
     );
