@@ -10,7 +10,9 @@ export default function MainNavigation() {
                 </li>
                 <li>감상문</li>
                 <li>필사함</li>
-                <li>검색</li>
+                <li>
+                    <Link href='/search'>검색</Link>
+                </li>
             </ul>
         </nav>
     );
