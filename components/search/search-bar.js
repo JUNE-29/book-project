@@ -1,9 +1,11 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 import styles from './search-bar.module.css';
 import { useRouter } from 'next/router';
 
 export default function SearchBar() {
+    const [keyword, setkeyword] = useState('');
+
     const searchRef = useRef();
     const router = useRouter();
 
@@ -18,8 +20,13 @@ export default function SearchBar() {
     };
 
     const handleSearch = () => {
-        const keyword = searchRef.current.value;
+        //const keyword = searchRef.current.value;
+        //setkeyword(searchRef.current.value);
         router.push(`/search/${keyword}`);
+    };
+
+    const handleChange = (e) => {
+        setkeyword(e.target.value);
     };
 
     return (
@@ -30,6 +37,8 @@ export default function SearchBar() {
                 type='search'
                 placeholder='책 검색'
                 onKeyDown={onKeyDown}
+                onChange={handleChange}
+                value={keyword}
             />
             <button className={styles.button} type='submit' onClick={onClick}>
                 <svg

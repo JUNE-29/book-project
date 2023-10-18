@@ -1,0 +1,30 @@
+.search {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    max-width: 500px;
+    height: 2rem;
+    margin: 0 auto;
+    margin-top: 0.5rem;
+}
+
+.input {
+    flex-basis: 100%;
+    width: 100%;
+    font-size: 1rem;
+    outline: 0;
+    border: none;
+    border-bottom: solid 1px var(--main-color);
+    background-color: transparent;
+    padding: 0.5rem;
+}
+
+.button {
+    fill: var(--main-color);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    width: 2rem;
+    padding-top: 0.3rem;
+}

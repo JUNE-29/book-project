@@ -1,4 +1,5 @@
 import SearchBar from '@/components/search/search-bar';
+import SearchBookList from '@/components/search/search-bookList';
 import KaKaoAPI from '@/lib/kakaoAPI-utils';
 import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
@@ -16,20 +17,12 @@ export default function SearchKeyword() {
         staleTime: 1000 * 60 * 360,
     });
 
-    console.log(books);
-
     return (
         <>
             <SearchBar />
             {isLoading && <p>Loading...</p>}
             {error && <p>Something is wrong😫</p>}
-            {books && (
-                <ul>
-                    {books.documents.map((book) => (
-                        <li key={book.isbn}>{book.title}</li>
-                    ))}
-                </ul>
-            )}
+            {books && <SearchBookList books={books} />}
         </>
     );
 }
