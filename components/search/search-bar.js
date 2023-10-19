@@ -20,8 +20,6 @@ export default function SearchBar() {
     };
 
     const handleSearch = () => {
-        //const keyword = searchRef.current.value;
-        //setkeyword(searchRef.current.value);
         router.push(`/search/${keyword}`);
     };
 
