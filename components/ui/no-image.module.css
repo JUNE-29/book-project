@@ -1,0 +1,13 @@
+.noImage {
+    background-color: var(--grey-color);
+    border-radius: 1em;
+    margin-bottom: 1.5em;
+    width: 7.5rem;
+    height: 10rem;
+    text-align: center;
+    padding: 3rem 0 2.5rem 0;
+}
+
+.message {
+    font-size: smaller;
+}

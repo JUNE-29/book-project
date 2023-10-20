@@ -25,16 +25,28 @@ export default function SearchKeyword() {
         });
 
     const getNextPage = () => fetchNextPage();
-    //hasNextPage ? fetchNextPage() : alert('다음 리스트가 없습니다!😅');
+
+    const goToDetail = (isbn) => {
+        router.push(`/search/detail/${isbn}`);
+    };
+    const selectBook = (book) => {
+        if (book) {
+            const isbn = book.isbn;
+            const splittedIsbn = isbn.split(' ');
+            goToDetail(splittedIsbn[0]);
+        }
+    };
 
     return (
         <div>
             <SearchBar />
-            {isLoading && <p>Loading...</p>}
-            {error && <p>Something is wrong😫</p>}
+            {isLoading && <p>불러오는 중...</p>}
+            {error && <p>오류가 있습니다. 다시 시도해주십시오.</p>}
             <div className={styles.listBox}>
                 {data &&
-                    data.pages.map((books) => <SearchBookList books={books} />)}
+                    data.pages.map((books) => (
+                        <SearchBookList books={books} selectBook={selectBook} />
+                    ))}
                 {hasNextPage && (
                     <Button text={'리스트 더 보기'} onClick={getNextPage} />
                 )}
