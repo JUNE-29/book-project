@@ -33,7 +33,9 @@ export default function SearchKeyword() {
         if (book) {
             const isbn = book.isbn;
             const splittedIsbn = isbn.split(' ');
-            goToDetail(splittedIsbn[0]);
+            splittedIsbn[0]
+                ? goToDetail(splittedIsbn[0])
+                : goToDetail(splittedIsbn[1]);
         }
     };
 
