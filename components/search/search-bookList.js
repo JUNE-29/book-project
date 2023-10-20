@@ -5,11 +5,7 @@ export default function SearchBookList({ books, selectBook }) {
     return (
         <ul className={styles.list}>
             {books.documents.map((book) => (
-                <SearchBookItem
-                    book={book}
-                    key={book.isbn}
-                    selectBook={selectBook}
-                />
+                <SearchBookItem book={book} selectBook={selectBook} />
             ))}
         </ul>
     );
