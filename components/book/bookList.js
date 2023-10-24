@@ -10,8 +10,8 @@ export default function BookList({ books }) {
                     return (
                         <BookItem
                             book={book}
-                            key={book.user_book_id}
                             bookNumber={bookNumber}
+                            key={book.book_isbn + bookNumber}
                         />
                     );
                 })}

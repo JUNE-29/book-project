@@ -4,13 +4,10 @@ import BookNavigation from '@/components/book/book_navigation';
 import {
     getFilteredDoneBookCreatedYear,
     getFilteredDoneBookList,
-} from '@/lib/book-utils';
-import { useRouter } from 'next/router';
+} from '@/lib/db-util';
 
 export default function FilteredReadBookList(props) {
     const { bookList, filteredYear } = props;
-    // const router = useRouter();
-    // const filterData = router.query.year;
 
     return (
         <>

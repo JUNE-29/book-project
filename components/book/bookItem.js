@@ -7,6 +7,8 @@ export default function BookItem({ book, bookNumber }) {
         return colors[colorsNum];
     };
     return (
-        <li className={`${styles.li} ${bookType(bookNumber)}`}>{book.title}</li>
+        <li className={`${styles.li} ${bookType(bookNumber)}`}>
+            {book.book_title}
+        </li>
     );
 }
