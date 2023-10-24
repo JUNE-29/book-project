@@ -3,11 +3,7 @@ import styles from './search-bookItem.module.css';
 
 export default function SearchBookItem({ book, selectBook }) {
     return (
-        <li
-            key={book.isbn}
-            className={styles.li}
-            onClick={() => selectBook(book)}
-        >
+        <li className={styles.li} onClick={() => selectBook(book)}>
             {book.thumbnail ? (
                 <div>
                     <img

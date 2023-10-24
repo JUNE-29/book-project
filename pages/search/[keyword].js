@@ -46,8 +46,12 @@ export default function SearchKeyword() {
             {error && <p>오류가 있습니다. 다시 시도해주십시오.</p>}
             <div className={styles.listBox}>
                 {data &&
-                    data.pages.map((books) => (
-                        <SearchBookList books={books} selectBook={selectBook} />
+                    data.pages.map((books, index) => (
+                        <SearchBookList
+                            books={books}
+                            selectBook={selectBook}
+                            key={index}
+                        />
                     ))}
                 {hasNextPage && (
                     <Button text={'리스트 더 보기'} onClick={getNextPage} />
