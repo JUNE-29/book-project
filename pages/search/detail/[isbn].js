@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 
 import styles from '../../../styles/search-detail.module.css';
+import Button from '@/components/ui/button';
 
 export default function SearchBookDetail() {
     const router = useRouter();
@@ -19,11 +20,24 @@ export default function SearchBookDetail() {
         staleTime: 1000 * 60 * 360,
     });
 
+    const onClick = () => {
+        if (book) {
+            router.push(
+                `/readBook/add/${book.documents[0].title}/${book.documents[0].isbn}`
+            );
+        }
+    };
+
     return (
         <div className={styles.layout}>
+            <h3 className={styles.title}>책 정보 자세히 보기</h3>
             {isLoading && <p>불러오는 중...</p>}
             {error && <p>오류가 있습니다. 다시 시도해주십시오.</p>}
             {book && <BookDetail book={book.documents[0]} />}
+            <div className={styles.btnlayout}>
+                <Button text='읽은 책에 담기' onClick={onClick} />
+                <Button text='읽고 싶은 책에 담기' />
+            </div>
         </div>
     );
 }

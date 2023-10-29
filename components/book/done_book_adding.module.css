@@ -1,0 +1,36 @@
+.layout {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: 31rem;
+    margin-top: 2rem;
+    text-align: center;
+    align-items: center;
+}
+
+.title {
+    font-size: medium;
+    color: var(--main-color);
+    margin-bottom: 1rem;
+}
+
+.container {
+    width: 100%;
+    background-color: var(--white-color);
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px 0px rgba(217, 217, 217, 0.5);
+    margin-bottom: 1.5rem;
+}
+
+.bookTitle {
+    padding: 1rem;
+    border-bottom: solid 1px #efefef;
+}
+
+.dateBox {
+    padding-top: 1rem;
+}
+
+.rate {
+    padding-bottom: 1rem;
+}

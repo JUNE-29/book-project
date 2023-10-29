@@ -3,4 +3,19 @@
     flex-direction: column;
     margin: 0 auto;
     max-width: 600px;
+    margin-top: 2rem;
+}
+
+.title {
+    text-align: center;
+    font-size: medium;
+    color: var(--main-color);
+    margin-bottom: 1rem;
+}
+
+.btnlayout {
+    display: flex;
+    margin: 0 auto;
+    margin-top: 1rem;
+    gap: 1rem;
 }
