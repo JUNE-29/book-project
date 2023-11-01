@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 
 import styles from '../../../styles/search-detail.module.css';
 import Button from '@/components/ui/button';
+import AddWishBook from '@/components/book/wish_book_adding';
 
 export default function SearchBookDetail() {
     const router = useRouter();
@@ -20,11 +21,17 @@ export default function SearchBookDetail() {
         staleTime: 1000 * 60 * 360,
     });
 
-    const onClick = () => {
+    const addDoneBook = () => {
         if (book) {
             router.push(
                 `/readBook/add/${book.documents[0].title}/${book.documents[0].isbn}`
             );
+        }
+    };
+
+    const addWishBook = () => {
+        if (book) {
+            AddWishBook(book.documents[0].title, book.documents[0].isbn);
         }
     };
 
@@ -35,8 +42,8 @@ export default function SearchBookDetail() {
             {error && <p>오류가 있습니다. 다시 시도해주십시오.</p>}
             {book && <BookDetail book={book.documents[0]} />}
             <div className={styles.btnlayout}>
-                <Button text='읽은 책에 담기' onClick={onClick} />
-                <Button text='읽고 싶은 책에 담기' />
+                <Button text='읽은 책에 담기' onClick={addDoneBook} />
+                <Button text='읽고 싶은 책에 담기' onClick={addWishBook} />
             </div>
         </div>
     );
