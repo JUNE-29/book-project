@@ -20,7 +20,9 @@ export default function BookDetail({ book }) {
             </div>
             <div className={styles.infoBox}>
                 <h3 className={styles.title}>{book.title}</h3>
-                <span className={styles.authors}>{book.authors}</span>
+                <span className={styles.authors}>
+                    {book.authors.join(', ')}
+                </span>
                 <span className={styles.division}> | </span>
                 <span className={styles.publisher}>{book.publisher}</span>
                 <span className={styles.division}> | </span>
