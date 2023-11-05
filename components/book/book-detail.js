@@ -1,10 +1,10 @@
 import NoImage from '../ui/no-image';
+import { ReadOnlyHeartRate } from '../ui/rating';
 import styles from './book-detail.module.css';
 
-export default function BookDetail({ book }) {
+export default function BookDetail({ book, score }) {
     const datetime = book.datetime;
     const date = datetime.slice(0, 10);
-
     return (
         <div className={styles.container}>
             <div>
@@ -27,6 +27,15 @@ export default function BookDetail({ book }) {
                 <span className={styles.publisher}>{book.publisher}</span>
                 <span className={styles.division}> | </span>
                 <span className={styles.datetime}>{date}</span>
+                {score && (
+                    <>
+                        <h4 className={styles.myRate}>내 점수</h4>
+                        <div className={styles.rateBox}>
+                            <ReadOnlyHeartRate rate={score} />
+                            <span className={styles.rateNumber}>{score}</span>
+                        </div>
+                    </>
+                )}
                 <h4 className={styles.contentsTitle}>책소개</h4>
                 <p className={styles.contents}>
                     {book.contents ? book.contents : '책소개가 없습니다.'}
