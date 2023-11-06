@@ -5,6 +5,7 @@ import KaKaoAPI from '@/lib/kakaoAPI-utils';
 import BookDetail from '@/components/book/book-detail';
 
 import styles from '../../../styles/book-detail-page.module.css';
+import Button from '@/components/ui/button';
 
 export default function wishBookDetail() {
     const router = useRouter();
@@ -24,6 +25,14 @@ export default function wishBookDetail() {
         router.push('/wishBookList');
     };
 
+    const addDoneBook = () => {
+        if (book) {
+            router.push(
+                `/readBook/add/${book.documents[0].title}/${book.documents[0].isbn}`
+            );
+        }
+    };
+
     return (
         <div className={styles.layout}>
             <div className={styles.backBtn} onClick={goToList}>
@@ -41,6 +50,9 @@ export default function wishBookDetail() {
             {isLoading && <p>불러오는 중...</p>}
             {error && <p>오류가 있습니다. 다시 시도해주십시오.</p>}
             {book && <BookDetail book={book.documents[0]} />}
+            <div className={styles.btnlayout}>
+                <Button text='읽은 책에 담기' onClick={addDoneBook} />
+            </div>
         </div>
     );
 }
