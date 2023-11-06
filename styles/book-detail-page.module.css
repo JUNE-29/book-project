@@ -3,7 +3,7 @@
     flex-direction: column;
     margin: 0 auto;
     max-width: 600px;
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
 .title {
@@ -15,4 +15,16 @@
 
 .btnlayout {
     margin: 0 auto;
+}
+
+.backBtn {
+    display: flex;
+    align-items: center;
+    color: var(--main-color);
+    fill: var(--main-color);
+}
+
+.backBtnText {
+    margin-left: 0.3rem;
+    cursor: pointer;
 }
