@@ -10,17 +10,14 @@ export default function WishBookList(props) {
     const { books } = props;
 
     const router = useRouter();
-    const goToDetail = (isbn) => {
-        router.push(`/wishBookList/detail/${isbn}`);
+    const goToDetail = (userBookId) => {
+        router.push(`/wishBookList/detail/${userBookId}`);
     };
 
     const selectBook = (book) => {
         if (book) {
-            const isbn = book.book_isbn;
-            const splittedIsbn = isbn.split(' ');
-            splittedIsbn[0]
-                ? goToDetail(splittedIsbn[0])
-                : goToDetail(splittedIsbn[1]);
+            const userBookId = book.user_book_id;
+            goToDetail(userBookId);
         }
     };
     return (

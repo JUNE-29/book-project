@@ -28,3 +28,24 @@
     margin-left: 0.3rem;
     cursor: pointer;
 }
+
+.twoBtnlayout {
+    display: flex;
+    margin: 0 auto;
+    margin-top: 1rem;
+    gap: 1rem;
+}
+
+.errorMsg {
+    text-align: center;
+    margin: 1.5rem;
+    color: var(--main-color);
+}
+
+.errorMsgBtn {
+    cursor: pointer;
+}
+
+.errorMsgBtn:hover {
+    color: var(--light-green-color);
+}
