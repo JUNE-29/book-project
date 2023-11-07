@@ -4,9 +4,11 @@ import { useQuery } from '@tanstack/react-query';
 import KaKaoAPI from '@/lib/kakaoAPI-utils';
 import BookDetail from '@/components/book/book-detail';
 import { selectBookByBookId } from '@/lib/db-util';
+import RemoveBookfromBookList from '@/components/book/book_removal';
 
 import styles from '../../../styles/book-detail-page.module.css';
 import BackButton from '@/components/ui/back-button';
+import Button from '@/components/ui/button';
 
 export default function readBookDetail(props) {
     const { book } = props;
@@ -41,6 +43,19 @@ export default function readBookDetail(props) {
         router.push('/readBookList');
     };
 
+    const removeBook = async () => {
+        if (confirm('책을 목록에서 삭제하시겠습니까?')) {
+            const result = await RemoveBookfromBookList(book.userBookId);
+
+            if (result === 'success') {
+                alert('책을 삭제했습니다.');
+                goToList();
+            }
+        } else {
+            return;
+        }
+    };
+
     return (
         <div className={styles.layout}>
             <BackButton text='목록으로 가기' onClick={goToList} />
@@ -50,6 +65,9 @@ export default function readBookDetail(props) {
             {data && (
                 <BookDetail book={data.documents[0]} score={book.starScore} />
             )}
+            <div className={styles.btnlayout}>
+                <Button text='삭제하기' onClick={removeBook} />
+            </div>
         </div>
     );
 }
@@ -80,6 +98,7 @@ export async function getServerSideProps(context) {
     return {
         props: {
             book: {
+                userBookId: userBookId,
                 starScore: starScore,
                 isbn: bookIsbn,
             },
