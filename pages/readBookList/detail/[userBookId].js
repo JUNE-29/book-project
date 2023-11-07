@@ -31,13 +31,13 @@ export default function readBookDetail(props) {
     const isbn = book.isbn;
     const kakaoApi = new KaKaoAPI();
 
-    const { data, isLoading, error } = useQuery(
-        ['book', isbn],
-        () => kakaoApi.searchByIsbn(isbn),
-        {
-            staleTime: 1000 * 60 * 360,
-        }
-    );
+    const {
+        data: kakaoData,
+        isLoading,
+        error,
+    } = useQuery(['book', isbn], () => kakaoApi.searchByIsbn(isbn), {
+        staleTime: 1000 * 60 * 360,
+    });
 
     const goToList = () => {
         router.push('/readBookList');
@@ -62,8 +62,12 @@ export default function readBookDetail(props) {
             <h3 className={styles.title}>책 정보 자세히 보기</h3>
             {isLoading && <p>불러오는 중...</p>}
             {error && <p>오류가 있습니다. 다시 시도해주십시오.</p>}
-            {data && (
-                <BookDetail book={data.documents[0]} score={book.starScore} />
+            {kakaoData && (
+                <BookDetail
+                    book={kakaoData.documents[0]}
+                    score={book.starScore}
+                    readDate={book.readDate}
+                />
             )}
             <div className={styles.btnlayout}>
                 <Button text='삭제하기' onClick={removeBook} />
@@ -86,6 +90,7 @@ export async function getServerSideProps(context) {
     }
 
     const starScore = book[0].user_book_star_score;
+    const readDate = book[0].user_book_done_date;
 
     let bookIsbn;
     if (book[0].book_isbn) {
@@ -101,6 +106,7 @@ export async function getServerSideProps(context) {
                 userBookId: userBookId,
                 starScore: starScore,
                 isbn: bookIsbn,
+                readDate: readDate,
             },
         },
     };

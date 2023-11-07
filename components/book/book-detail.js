@@ -2,7 +2,7 @@ import NoImage from '../ui/no-image';
 import { ReadOnlyHeartRate } from '../ui/rating';
 import styles from './book-detail.module.css';
 
-export default function BookDetail({ book, score }) {
+export default function BookDetail({ book, score, readDate }) {
     const datetime = book.datetime;
     const date = datetime.slice(0, 10);
     return (
@@ -35,6 +35,12 @@ export default function BookDetail({ book, score }) {
                             <span className={styles.rateNumber}>{score}</span>
                         </div>
                     </>
+                )}
+                {readDate && (
+                    <div className={styles.readDateBox}>
+                        <h4>책 다 읽은 날짜</h4>
+                        <p>{readDate}</p>
+                    </div>
                 )}
                 <h4 className={styles.contentsTitle}>책소개</h4>
                 <p className={styles.contents}>
