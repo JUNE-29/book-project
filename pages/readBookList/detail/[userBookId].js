@@ -12,8 +12,21 @@ export default function readBookDetail(props) {
     const { book } = props;
     const router = useRouter();
 
-    const isbn = book.isbn;
+    if (book === null) {
+        return (
+            <div className={styles.errorMsg}>
+                <p>없는 정보 입니다.</p>
+                <p
+                    onClick={() => router.push('/readBookList')}
+                    className={styles.errorMsgBtn}
+                >
+                    목록으로 돌아가기
+                </p>
+            </div>
+        );
+    }
 
+    const isbn = book.isbn;
     const kakaoApi = new KaKaoAPI();
 
     const { data, isLoading, error } = useQuery(
@@ -45,6 +58,14 @@ export async function getServerSideProps(context) {
     const { params } = context;
     const userBookId = params.userBookId;
     const book = await selectBookByBookId(userBookId);
+
+    if (book[0] === undefined) {
+        return {
+            props: {
+                book: null,
+            },
+        };
+    }
 
     const starScore = book[0].user_book_star_score;
 
