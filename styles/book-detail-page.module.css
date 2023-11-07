@@ -17,18 +17,6 @@
     margin: 0 auto;
 }
 
-.backBtn {
-    display: flex;
-    align-items: center;
-    color: var(--main-color);
-    fill: var(--main-color);
-}
-
-.backBtnText {
-    margin-left: 0.3rem;
-    cursor: pointer;
-}
-
 .twoBtnlayout {
     display: flex;
     margin: 0 auto;
