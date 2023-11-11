@@ -56,6 +56,10 @@ export default function readBookDetail(props) {
         }
     };
 
+    const updateDoneBook = () => {
+        router.push(`/readBook/update/${book.userBookId}`);
+    };
+
     return (
         <div className={styles.layout}>
             <BackButton text='목록으로 가기' onClick={goToList} />
@@ -71,6 +75,7 @@ export default function readBookDetail(props) {
             )}
             <div className={styles.btnlayout}>
                 <Button text='삭제하기' onClick={removeBook} />
+                <Button text='수정하기' onClick={updateDoneBook} />
             </div>
         </div>
     );
