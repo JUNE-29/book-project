@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { useRouter } from 'next/router';
 
+import getToday from '../calculate/get-today';
 import { HeartRating } from '@/components/ui/rating';
 import Button from '@/components/ui/button';
 
@@ -82,13 +83,4 @@ export default function AddDoneBook(props) {
             <Button text='서재에 담기' onClick={onClick} />
         </div>
     );
-}
-
-function getToday() {
-    const date = new Date();
-    const year = date.getFullYear();
-    const month = ('0' + (1 + date.getMonth())).slice(-2);
-    const day = ('0' + date.getDate()).slice(-2);
-
-    return `${year}-${month}-${day}`;
 }

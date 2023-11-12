@@ -1,10 +1,11 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 import Button from '../ui/button';
 import { HeartRating } from '../ui/rating';
 import styles from './done_book_updating.module.css';
 import { updateDoneBook } from '@/lib/db-util';
 import { useRouter } from 'next/router';
+import getToday from '../calculate/get-today';
 
 export default function UpdateDoneBook({ book }) {
     const {
@@ -67,13 +68,4 @@ export default function UpdateDoneBook({ book }) {
             <Button text='수정하기' onClick={onClick} />
         </div>
     );
-}
-
-function getToday() {
-    const date = new Date();
-    const year = date.getFullYear();
-    const month = ('0' + (1 + date.getMonth())).slice(-2);
-    const day = ('0' + date.getDate()).slice(-2);
-
-    return `${year}-${month}-${day}`;
 }
