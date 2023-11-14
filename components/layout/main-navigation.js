@@ -8,7 +8,9 @@ export default function MainNavigation() {
                 <li>
                     <Link href='/readBookList'>서적</Link>
                 </li>
-                <li>감상문</li>
+                <li>
+                    <Link href='/book-review'>감상문</Link>
+                </li>
                 <li>필사함</li>
                 <li>
                     <Link href='/search'>검색</Link>
