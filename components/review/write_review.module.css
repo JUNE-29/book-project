@@ -1,0 +1,88 @@
+.component {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.h3 {
+    margin-top: 2em;
+    margin-bottom: 1em;
+    color: var(--main-color);
+}
+
+.form {
+    width: 650px;
+}
+
+.emojiPickerBox {
+    position: relative;
+}
+
+.emojiPicker {
+    position: absolute;
+    margin-top: 1.5em;
+    left: -0.5em;
+}
+
+.emojiContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 2em;
+}
+
+.emojiBox {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    background-color: var(--main-color);
+    border: 1px solid var(--main-color);
+    border-radius: 0.5em;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1em;
+    cursor: pointer;
+}
+
+.emoji {
+    fill: var(--white-color);
+    font-size: x-large;
+}
+
+.text {
+    color: var(--main-color);
+    font-size: smaller;
+}
+
+.contents {
+    display: flex;
+    flex-direction: column;
+}
+
+.input {
+    outline: 0;
+    border: none;
+    border-bottom: 1px solid var(--dark-grey-color);
+    background-color: transparent;
+    font-size: 1rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1em;
+}
+
+.textarea {
+    outline: 0;
+    resize: none;
+    width: 100%;
+    height: 600px;
+    border: none;
+    padding: 1.5em;
+    border-radius: 15px;
+    background-color: rgba(84, 124, 97, 0.1);
+    margin-bottom: 1em;
+}
+
+.button {
+    margin-bottom: 1em;
+    text-align: center;
+}

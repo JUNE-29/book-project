@@ -1,3 +1,4 @@
+import { printDateWithYYMMDD } from '../calculate/get-today';
 import styles from './review_item.module.css';
 
 export default function ReviewItem({ review }) {
@@ -17,7 +18,9 @@ export default function ReviewItem({ review }) {
                 <span className={styles.bookTitle}>{bookTitle}</span>
                 <span className={styles.reviewTitle}>{title}</span>
             </div>
-            <span className={styles.reviewDate}>{date}</span>
+            <span className={styles.reviewDate}>
+                {printDateWithYYMMDD(date)}
+            </span>
         </li>
     );
 }

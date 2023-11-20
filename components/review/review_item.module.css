@@ -33,4 +33,5 @@
 .emoji {
     font-size: x-large;
     padding-top: 0.2em;
+    color: var(--white-color);
 }

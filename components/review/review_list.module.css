@@ -1,9 +1,3 @@
-.container {
-    max-width: 40rem;
-    margin: 0 auto;
-    margin-top: 45px;
-}
-
 .reviewList {
     display: flex;
     flex-direction: column;

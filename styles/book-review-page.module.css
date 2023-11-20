@@ -1,0 +1,25 @@
+.container {
+    max-width: 40rem;
+    margin: 0 auto;
+    margin-top: 45px;
+}
+
+.buttonBox {
+    text-align: right;
+    margin-right: 1em;
+}
+
+.button {
+    color: var(--main-color);
+    background-color: var(--white-color);
+    border: 1px solid var(--main-color);
+    font-weight: 700;
+    padding: 0.5em 1em 0.5em 1em;
+    border-radius: 3em;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: var(--main-color);
+    color: var(--white-color);
+}
