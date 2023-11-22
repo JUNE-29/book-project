@@ -3,13 +3,18 @@
     flex-direction: row;
     border-bottom: solid 1px var(--grey-color);
     padding: 1em 0 1em 0;
+    width: 100%;
+    justify-content: space-between;
     color: var(--main-color);
+}
+
+.leftBox {
+    display: flex;
 }
 
 .titleBox {
     display: flex;
     flex-direction: column;
-    width: 450px;
     cursor: pointer;
 }
 
@@ -34,4 +39,8 @@
     font-size: x-large;
     padding-top: 0.2em;
     color: var(--white-color);
+}
+
+.reviewDate {
+    right: 0;
 }

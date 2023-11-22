@@ -11,7 +11,9 @@ export default function MainNavigation() {
                 <li>
                     <Link href='/book-review'>감상문</Link>
                 </li>
-                <li>필사함</li>
+                <li>
+                    <Link href='/book-transcription'>필사함</Link>
+                </li>
                 <li>
                     <Link href='/search'>검색</Link>
                 </li>

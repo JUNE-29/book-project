@@ -1,12 +1,11 @@
 .container {
-    max-width: 40rem;
+    max-width: 31rem;
     margin: 0 auto;
     margin-top: 45px;
 }
 
 .buttonBox {
     text-align: right;
-    margin-right: 1em;
 }
 
 .button {

@@ -11,12 +11,14 @@ export default function ReviewItem({ review }) {
 
     return (
         <li className={styles.li}>
-            <div className={styles.emojiBox}>
-                <span className={styles.emoji}>{emoji}</span>
-            </div>
-            <div className={styles.titleBox}>
-                <span className={styles.bookTitle}>{bookTitle}</span>
-                <span className={styles.reviewTitle}>{title}</span>
+            <div className={styles.leftBox}>
+                <div className={styles.emojiBox}>
+                    <span className={styles.emoji}>{emoji}</span>
+                </div>
+                <div className={styles.titleBox}>
+                    <span className={styles.bookTitle}>{bookTitle}</span>
+                    <span className={styles.reviewTitle}>{title}</span>
+                </div>
             </div>
             <span className={styles.reviewDate}>
                 {printDateWithYYMMDD(date)}
