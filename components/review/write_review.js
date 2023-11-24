@@ -6,7 +6,7 @@ import Button from '../ui/button';
 import { useRouter } from 'next/router';
 import { calculateKoreanTime } from '../calculate/get-today';
 
-export default function WriteReview({ book }) {
+export default function WriteReview({ book, review }) {
     const { bookTitle, userBookId } = book;
     const router = useRouter();
     const [emojiPicker, setEmojiPicker] = useState(false);
@@ -35,9 +35,17 @@ export default function WriteReview({ book }) {
         const reviewContent = textAreaRef.current.value;
         const createdDate = calculateKoreanTime();
 
-        if (userBookId) {
+        if (!emojiUniCode) {
+            return alert('이모티콘을 선택해주세요!');
+        }
+        if (reviewContent === '' || !reviewTitle === '') {
+            alert('제목 또는 내용을 입력해주세요!');
+            return;
+        }
+
+        if (userBookId && review === undefined) {
             try {
-                await fetch('/api/addReview', {
+                await fetch('/api/review/addNewReview', {
                     method: 'POST',
                     body: JSON.stringify({
                         reviewTitle: reviewTitle,
@@ -56,6 +64,35 @@ export default function WriteReview({ book }) {
                         router.push('/book-review');
                     } else {
                         alert('등록에 실패했습니다.');
+                    }
+                });
+            } catch (error) {
+                console.error('오류 발생:', error);
+            }
+
+            return;
+        }
+
+        if (userBookId && review.reviewId) {
+            try {
+                await fetch('/api/review/editReview', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        reviewId: review.reviewId,
+                        reviewTitle: reviewTitle,
+                        reviewContent: reviewContent,
+                        emojiUniCode: emojiUniCode,
+                        createdDate: createdDate,
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                }).then((response) => {
+                    if (response.status === 201) {
+                        alert('감상문을 수정했습니다!');
+                        router.push('/book-review');
+                    } else {
+                        alert('수정에 실패했습니다.');
                     }
                 });
             } catch (error) {
@@ -108,10 +145,12 @@ export default function WriteReview({ book }) {
                             ref={titleRef}
                             className={styles.input}
                             placeholder='감상문 제목'
+                            defaultValue={review ? review.reviewTitle : ''}
                         ></input>
                         <textarea
                             ref={textAreaRef}
                             className={styles.textarea}
+                            defaultValue={review ? review.reviewContent : ''}
                         ></textarea>
                     </div>
                     <div className={styles.button}>

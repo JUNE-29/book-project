@@ -1,0 +1,16 @@
+import { removeReviewfromDB } from '@/lib/db-util';
+
+export default function RemoveReviewFromList(props) {
+    const reviewId = props;
+
+    try {
+        if (reviewId) {
+            removeReviewfromDB(reviewId);
+            return 'success';
+        } else {
+            throw new Error('오류 발생: 리뷰 아이디 값이 없습니다.');
+        }
+    } catch (error) {
+        console.error('오류 발생:', error);
+    }
+}

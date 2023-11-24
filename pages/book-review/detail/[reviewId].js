@@ -11,6 +11,7 @@ import BackButton from '@/components/ui/back-button';
 import Button from '@/components/ui/button';
 
 import styles from '../../../styles/book-detail-page.module.css';
+import RemoveReviewFromList from '@/components/review/remove_review';
 
 export default function ReviewDetail(props) {
     const { review, book } = props;
@@ -30,6 +31,23 @@ export default function ReviewDetail(props) {
         router.push('/book-review');
     };
 
+    const editReview = () => {
+        router.push(`/book-review/edit-review/${review.reviewId}`);
+    };
+
+    const removeReview = () => {
+        if (confirm('리뷰를 삭제하시겠습니까?')) {
+            const result = RemoveReviewFromList(review.reviewId);
+
+            if (result === 'success') {
+                alert('리뷰를 삭제했습니다.');
+                goToList();
+            }
+        } else {
+            return;
+        }
+    };
+
     return (
         <div className={styles.layout}>
             <BackButton text='목록으로 가기' onClick={goToList} />
@@ -44,8 +62,8 @@ export default function ReviewDetail(props) {
             )}
             <ReviewContetns review={review} />
             <div className={styles.btnlayout}>
-                <Button text='수정하기' />
-                <Button text='삭제하기' />
+                <Button text='수정하기' onClick={editReview} />
+                <Button text='삭제하기' onClick={removeReview} />
             </div>
         </div>
     );

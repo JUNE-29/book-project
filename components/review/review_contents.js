@@ -1,8 +1,11 @@
+import React from 'react';
 import { printDateWithYYMMDD } from '../calculate/get-today';
 import styles from './review_contents.module.css';
 
 export default function ReviewContetns({ review }) {
     const { createDate, reviewContent, reviewTitle } = review;
+    const content = formatTextWithBr(reviewContent);
+    console.log(content);
     return (
         <div className={styles.container}>
             <div className={styles.upperBox}>
@@ -12,8 +15,18 @@ export default function ReviewContetns({ review }) {
                 </span>
             </div>
             <div>
-                <p className={styles.content}>{reviewContent}</p>
+                <p className={styles.content}>{content}</p>
             </div>
         </div>
     );
+}
+
+function formatTextWithBr(text) {
+    const lines = text.split('\n');
+    return lines.map((line, index) => (
+        <React.Fragment key={index}>
+            {line}
+            {index !== lines.length - 1 && <br />}
+        </React.Fragment>
+    ));
 }
