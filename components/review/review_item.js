@@ -1,7 +1,7 @@
 import { printDateWithYYMMDD } from '../calculate/get-today';
 import styles from './review_item.module.css';
 
-export default function ReviewItem({ review }) {
+export default function ReviewItem({ review, selectReview }) {
     const {
         review_title: title,
         create_date: date,
@@ -17,7 +17,12 @@ export default function ReviewItem({ review }) {
                 </div>
                 <div className={styles.titleBox}>
                     <span className={styles.bookTitle}>{bookTitle}</span>
-                    <span className={styles.reviewTitle}>{title}</span>
+                    <span
+                        className={styles.reviewTitle}
+                        onClick={() => selectReview(review)}
+                    >
+                        {title}
+                    </span>
                 </div>
             </div>
             <span className={styles.reviewDate}>

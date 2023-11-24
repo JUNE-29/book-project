@@ -15,6 +15,9 @@
 .titleBox {
     display: flex;
     flex-direction: column;
+}
+
+.reviewTitle {
     cursor: pointer;
 }
 

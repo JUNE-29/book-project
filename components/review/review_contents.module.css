@@ -1,0 +1,30 @@
+.container {
+    max-width: 100%;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding: 1.5rem;
+    background-color: var(--white-color);
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px 0px rgba(217, 217, 217, 0.5);
+    display: flex;
+    flex-direction: column;
+    border: solid 1px var(--main-color);
+}
+
+.upperBox {
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    color: var(--main-color);
+    font-weight: 700;
+}
+
+.date {
+    color: var(--dark-grey-color);
+}
+
+.content {
+    margin-top: 1.5rem;
+}

@@ -35,7 +35,6 @@ export function calculateKoreanTime() {
 }
 
 export function printDateWithYYMMDD(createdDate) {
-    console.log(createdDate);
     const date = createdDate;
     const splitedDate = date.split(' ');
     return splitedDate[0];

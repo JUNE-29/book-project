@@ -11,6 +11,13 @@ export default function reviewList(props) {
     const goToAddingNewReview = () => {
         router.push('/book-review/new-review/pick-book');
     };
+
+    const selectReview = (review) => {
+        if (review.review_id) {
+            router.push(`/book-review/detail/${review.review_id}`);
+        }
+    };
+
     return (
         <div className={styles.container}>
             <div className={styles.buttonBox}>
@@ -18,7 +25,7 @@ export default function reviewList(props) {
                     감상문 쓰기
                 </button>
             </div>
-            <ReviewList reviews={reviews} />
+            <ReviewList reviews={reviews} selectReview={selectReview} />
         </div>
     );
 }
