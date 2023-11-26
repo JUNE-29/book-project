@@ -5,7 +5,6 @@ import styles from './review_contents.module.css';
 export default function ReviewContetns({ review }) {
     const { createDate, reviewContent, reviewTitle } = review;
     const content = formatTextWithBr(reviewContent);
-    console.log(content);
     return (
         <div className={styles.container}>
             <div className={styles.upperBox}>
