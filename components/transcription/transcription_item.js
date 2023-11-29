@@ -12,7 +12,7 @@ export default function TranscriptionItem({ transcription }) {
     const textColor = isDarkBackground ? '#FFFFFF' : '#000000';
 
     const bgcolor = {
-        backgroundColor: `#${color}`,
+        backgroundColor: color,
         color: textColor,
     };
 

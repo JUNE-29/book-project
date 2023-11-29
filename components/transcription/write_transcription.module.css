@@ -1,0 +1,100 @@
+.component {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.h3 {
+    margin-top: 2em;
+    margin-bottom: 1em;
+    color: var(--main-color);
+}
+
+.form {
+    width: 650px;
+}
+
+.colorPicker {
+    position: absolute;
+    margin-top: 1.5em;
+    left: -0.5em;
+}
+
+.colorContainer {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 2em;
+}
+
+.colorBox {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    background-color: var(--main-color);
+    border-radius: 0.5em;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1em;
+    cursor: pointer;
+}
+
+.color {
+    fill: var(--white-color);
+    font-size: x-large;
+}
+
+.closeColorPicker {
+    position: absolute;
+    transform: translate(13rem, 13rem);
+}
+
+.closeColorPickerBtn {
+    padding: 0.3rem 0.5rem 0.3rem 0.5rem;
+    background-color: var(--white-color);
+    border-radius: 0.5rem;
+    border: solid 1px var(--main-color);
+    color: var(--main-color);
+    cursor: pointer;
+    z-index: 100;
+}
+
+.text {
+    color: var(--main-color);
+    font-size: smaller;
+}
+
+.contents {
+    display: flex;
+    flex-direction: column;
+}
+
+.input {
+    outline: 0;
+    width: 30%;
+    border: none;
+    border-bottom: 1px solid var(--dark-grey-color);
+    background-color: transparent;
+    font-size: 1rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1em;
+}
+
+.textarea {
+    outline: 0;
+    resize: none;
+    width: 100%;
+    height: 600px;
+    border: none;
+    padding: 1.5em;
+    border-radius: 15px;
+    background-color: rgba(84, 124, 97, 0.1);
+    margin-bottom: 1em;
+}
+
+.button {
+    margin-bottom: 1em;
+    text-align: center;
+}
