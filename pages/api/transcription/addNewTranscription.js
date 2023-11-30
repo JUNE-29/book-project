@@ -7,7 +7,7 @@ export default async function handler(req, res) {
         const color = req.body.colorHexCode;
         const bookPage = req.body.bookPage;
         const transcriptionContents = req.body.transcriptionContents;
-        const userBookId = req.body.transcriptionContents;
+        const userBookId = req.body.userBookId;
         const bookTitle = req.body.bookTitle;
         const createdDate = req.body.createdDate;
 
