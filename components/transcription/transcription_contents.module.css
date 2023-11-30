@@ -1,0 +1,29 @@
+.container {
+    max-width: 100%;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding: 1.5rem;
+    background-color: var(--white-color);
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px 0px rgba(217, 217, 217, 0.5);
+    display: flex;
+    flex-direction: column;
+}
+
+.upperBox {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.3rem;
+}
+
+.bookTitle {
+    font-size: larger;
+}
+
+.page {
+    margin-bottom: 1.5rem;
+}
+
+.content {
+    margin-bottom: 0.5rem;
+}

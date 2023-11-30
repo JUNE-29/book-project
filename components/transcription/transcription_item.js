@@ -1,6 +1,9 @@
 import styles from './transcription_item.module.css';
 
-export default function TranscriptionItem({ transcription }) {
+export default function TranscriptionItem({
+    transcription,
+    selectTranscription,
+}) {
     const {
         book_title: bookTitle,
         book_page: page,
@@ -17,7 +20,11 @@ export default function TranscriptionItem({ transcription }) {
     };
 
     return (
-        <li className={styles.li} style={bgcolor}>
+        <li
+            className={styles.li}
+            style={bgcolor}
+            onClick={() => selectTranscription(transcription)}
+        >
             <div className={styles.upperBox}>
                 <p>
                     {contents.length > 100

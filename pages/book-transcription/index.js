@@ -7,6 +7,14 @@ import styles from '../../styles/book-review-page.module.css';
 export default function Transcription(props) {
     const { transcriptions } = props;
     const router = useRouter();
+
+    const selectTranscription = (contents) => {
+        if (contents.transcription_id) {
+            router.push(
+                `/book-transcription/detail/${contents.transcription_id}`
+            );
+        }
+    };
     return (
         <div className={styles.container}>
             <div className={styles.buttonBox}>
@@ -21,7 +29,10 @@ export default function Transcription(props) {
                     필사하기
                 </button>
             </div>
-            <TranscriptionList transcriptions={transcriptions} />
+            <TranscriptionList
+                transcriptions={transcriptions}
+                selectTranscription={selectTranscription}
+            />
         </div>
     );
 }
