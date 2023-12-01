@@ -7,7 +7,7 @@ import Button from '../ui/button';
 import { calculateKoreanTime } from '../calculate/get-today';
 import { useRouter } from 'next/router';
 
-export default function WriteTranscription({ book }) {
+export default function WriteTranscription({ book, transcription }) {
     const { bookTitle, userBookId } = book;
     const router = useRouter();
     const [color, setColor] = useState();
@@ -35,7 +35,7 @@ export default function WriteTranscription({ book }) {
             return alert('페이지 또는 필사 내용을 입력해주세요!');
         }
 
-        if (userBookId) {
+        if (userBookId && transcription === undefined) {
             try {
                 await fetch('/api/transcription/addNewTranscription', {
                     method: 'POST',
@@ -56,6 +56,34 @@ export default function WriteTranscription({ book }) {
                         router.push('/book-transcription');
                     } else {
                         alert('등록에 실패했습니다.');
+                    }
+                });
+            } catch (error) {
+                console.error('오류 발생:', error);
+            }
+            return;
+        }
+
+        if (userBookId && transcription.transcId) {
+            try {
+                await fetch('/api/transcription/editTranscription', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        transcId: transcription.transcId,
+                        transcriptionContents: transcriptionContents,
+                        colorHexCode: color,
+                        bookPage: bookPage,
+                        editDate: createdDate,
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                }).then((response) => {
+                    if (response.status === 201) {
+                        alert('감상문을 수정했습니다!');
+                        //router.push('/book-transcription');
+                    } else {
+                        alert('수정에 실패했습니다.');
                     }
                 });
             } catch (error) {
@@ -119,10 +147,16 @@ export default function WriteTranscription({ book }) {
                         ref={pageRef}
                         name='page'
                         className={styles.input}
+                        defaultValue={
+                            transcription ? transcription.bookPage : ''
+                        }
                     ></input>
                     <textarea
                         ref={textAreaRef}
                         className={styles.textarea}
+                        defaultValue={
+                            transcription ? transcription.transcContent : ''
+                        }
                     ></textarea>
                 </div>
                 <div className={styles.button}>

@@ -7,6 +7,7 @@ export default function TranscriptionContents({ contents }) {
     const {
         book_title: bookTitle,
         create_date: date,
+        edited_date: editDate,
         color,
         book_page: page,
         transcription_content: transcContent,
@@ -26,7 +27,11 @@ export default function TranscriptionContents({ contents }) {
         <div className={styles.container} style={bgcolor}>
             <div className={styles.upperBox}>
                 <span className={styles.bookTitle}>{bookTitle}</span>
-                <span>{printDateWithYYMMDD(date)}</span>
+                <span>
+                    {editDate
+                        ? printDateWithYYMMDD(editDate)
+                        : printDateWithYYMMDD(date)}
+                </span>
             </div>
             <p className={styles.page}>p {page}</p>
             <p className={styles.content}>{content}</p>

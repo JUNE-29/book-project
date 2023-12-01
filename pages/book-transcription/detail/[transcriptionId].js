@@ -15,7 +15,11 @@ export default function TranscriptionDetail(props) {
         router.push('/book-transcription');
     };
 
-    const editTranscription = () => {};
+    const editTranscription = () => {
+        router.push(
+            `/book-transcription/edit-transcription/${transcription.transcription_id}`
+        );
+    };
     const removeTranscription = () => {};
 
     return (
