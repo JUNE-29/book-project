@@ -1,4 +1,4 @@
-import { editReview } from '@/lib/db-util';
+import { updateReview } from '@/lib/db-util';
 
 export default async function handler(req, res) {
     if (req.method === 'POST') {
@@ -6,25 +6,25 @@ export default async function handler(req, res) {
         const reviewTitle = req.body.reviewTitle;
         const reviewContent = req.body.reviewContent;
         const emojiUniCode = req.body.emojiUniCode;
-        const createdDate = req.body.createdDate;
+        const editDate = req.body.editDate;
 
         if (
             !reviewId ||
             !reviewTitle ||
             !reviewContent ||
             !emojiUniCode ||
-            !createdDate
+            !editDate
         ) {
             res.status(422).json({ massage: 'invaild new review data' });
             return;
         }
 
         try {
-            await editReview(
+            await updateReview(
                 reviewId,
                 reviewTitle,
                 reviewContent,
-                createdDate,
+                editDate,
                 emojiUniCode
             );
         } catch (error) {

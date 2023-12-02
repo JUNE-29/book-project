@@ -32,12 +32,12 @@ export default function ReviewDetail(props) {
     };
 
     const editReview = () => {
-        router.push(`/book-review/edit-review/${review.reviewId}`);
+        router.push(`/book-review/edit-review/${review.review_id}`);
     };
 
     const removeReview = () => {
         if (confirm('리뷰를 삭제하시겠습니까?')) {
-            const result = RemoveReviewFromList(review.reviewId);
+            const result = RemoveReviewFromList(review.review_id);
 
             if (result === 'success') {
                 alert('리뷰를 삭제했습니다.');
@@ -86,12 +86,7 @@ export async function getServerSideProps(context) {
 
     return {
         props: {
-            review: {
-                reviewId: reviewId,
-                reviewTitle: review[0].review_title,
-                reviewContent: review[0].review_content,
-                createDate: review[0].create_date,
-            },
+            review: review[0],
             book: {
                 starScore: book[0].user_book_star_score,
                 readDate: book[0].user_book_done_date,

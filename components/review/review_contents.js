@@ -3,14 +3,21 @@ import { printDateWithYYMMDD } from '../calculate/get-today';
 import styles from './review_contents.module.css';
 
 export default function ReviewContetns({ review }) {
-    const { createDate, reviewContent, reviewTitle } = review;
+    const {
+        review_title: reviewTitle,
+        review_content: reviewContent,
+        create_date: createDate,
+        edited_date: editDate,
+    } = review;
     const content = formatTextWithBr(reviewContent);
     return (
         <div className={styles.container}>
             <div className={styles.upperBox}>
                 <span className={styles.title}>{reviewTitle} </span>
                 <span className={styles.date}>
-                    {printDateWithYYMMDD(createDate)}
+                    {editDate
+                        ? printDateWithYYMMDD(editDate)
+                        : printDateWithYYMMDD(date)}
                 </span>
             </div>
             <div>

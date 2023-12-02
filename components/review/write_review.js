@@ -82,7 +82,7 @@ export default function WriteReview({ book, review }) {
                         reviewTitle: reviewTitle,
                         reviewContent: reviewContent,
                         emojiUniCode: emojiUniCode,
-                        createdDate: createdDate,
+                        editDate: createdDate,
                     }),
                     headers: {
                         'Content-Type': 'application/json',

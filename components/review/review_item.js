@@ -5,6 +5,7 @@ export default function ReviewItem({ review, selectReview }) {
     const {
         review_title: title,
         create_date: date,
+        edited_date: editDate,
         book_title: bookTitle,
     } = review;
     const emoji = String.fromCodePoint(`0x${review.emoji_unicode}`);
@@ -26,7 +27,9 @@ export default function ReviewItem({ review, selectReview }) {
                 </div>
             </div>
             <span className={styles.reviewDate}>
-                {printDateWithYYMMDD(date)}
+                {editDate
+                    ? printDateWithYYMMDD(editDate)
+                    : printDateWithYYMMDD(date)}
             </span>
         </li>
     );
