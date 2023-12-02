@@ -6,6 +6,7 @@ import Button from '@/components/ui/button';
 
 import styles from '../../../styles/book-detail-page.module.css';
 import { useRouter } from 'next/router';
+import removeTranscriptionFromList from '@/components/transcription/remove_transcription';
 
 export default function TranscriptionDetail(props) {
     const { transcription } = props;
@@ -20,7 +21,20 @@ export default function TranscriptionDetail(props) {
             `/book-transcription/edit-transcription/${transcription.transcription_id}`
         );
     };
-    const removeTranscription = () => {};
+    const removeTranscription = () => {
+        if (confirm('필사를 삭제하시겠습니까?')) {
+            const result = removeTranscriptionFromList(
+                transcription.transcription_id
+            );
+
+            if (result === 'success') {
+                alert('필사를 삭제했습니다.');
+                goToList();
+            }
+        } else {
+            return;
+        }
+    };
 
     return (
         <div className={styles.layout}>
