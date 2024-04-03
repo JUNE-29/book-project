@@ -17,7 +17,7 @@ export default function ReviewContetns({ review }) {
                 <span className={styles.date}>
                     {editDate
                         ? printDateWithYYMMDD(editDate)
-                        : printDateWithYYMMDD(date)}
+                        : printDateWithYYMMDD(createDate)}
                 </span>
             </div>
             <div>

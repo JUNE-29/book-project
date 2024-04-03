@@ -1,5 +1,7 @@
+import { getSession } from 'next-auth/react';
 import WriteTranscription from '@/components/transcription/write_transcription';
 import { selectTransciptionByTranscId } from '@/lib/db-util';
+import getUserEmail from '@/components/calculate/get-user-email';
 
 export default function EditTranscription(props) {
     const { transcription, book } = props;
@@ -8,9 +10,22 @@ export default function EditTranscription(props) {
 }
 
 export async function getServerSideProps(context) {
+    const session = await getSession(context);
+    if (!session) {
+        return {
+            redirect: {
+                destination: '/',
+            },
+        };
+    }
+    const userEmail = getUserEmail(session.user.email);
+
     const { params } = context;
     const transcId = params.transcriptionId;
-    const transcription = await selectTransciptionByTranscId(transcId);
+    const transcription = await selectTransciptionByTranscId(
+        transcId,
+        userEmail
+    );
 
     return {
         props: {

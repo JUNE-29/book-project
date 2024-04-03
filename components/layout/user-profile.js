@@ -1,8 +1,11 @@
+import { signIn, signOut, useSession } from 'next-auth/react';
 import { useRef } from 'react';
 
 import style from './user-profile.module.css';
 
 export default function UserProfile() {
+    const { data: session, status } = useSession();
+
     const downBox = useRef();
     let userNameBtnToggle = true;
     const onClick = () => {
@@ -14,28 +17,30 @@ export default function UserProfile() {
             userNameBtnToggle = true;
         }
     };
+
     return (
         <div className={style.profile}>
-            <div className={style.userName} onClick={onClick}>
-                <span>사용자</span>
-                <span className={style.downIcon}>
-                    <svg
-                        xmlns='http://www.w3.org/2000/svg'
-                        height='24'
-                        viewBox='0 -960 960 960'
-                        width='24'
-                        fill='none'
-                    >
-                        <path d='M480-360 280-560h400L480-360Z' />
-                    </svg>
-                </span>
+            <div className={style.userName}>
+                {status === 'loading' && <span>loading..</span>}
+                {status === 'unauthenticated' && (
+                    <span onClick={() => signIn()}>로그인</span>
+                )}
             </div>
-            <div className={style.downMenu} ref={downBox}>
-                <div className={style.downBox}>
-                    <span className={style.menu}>회원 정보 변경</span>
-                    <span className={style.menu}>로그아웃</span>
+            {status === 'authenticated' && (
+                <div className={style.downMenu} onClick={onClick}>
+                    <img
+                        className={style.userPhoto}
+                        src={session.user.image}
+                        alt='user profile photo'
+                    />
+                    <span>{session.user.name}</span>
+                    <div className={style.downBox} ref={downBox}>
+                        <span className={style.menu} onClick={() => signOut()}>
+                            로그아웃
+                        </span>
+                    </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 }

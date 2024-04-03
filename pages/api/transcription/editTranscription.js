@@ -7,6 +7,7 @@ export default async function handler(req, res) {
         const bookPage = req.body.bookPage;
         const transcriptionContents = req.body.transcriptionContents;
         const editDate = req.body.editDate;
+        const userEmail = req.body.userEmail;
 
         if (
             !transcriptionId ||
@@ -25,7 +26,8 @@ export default async function handler(req, res) {
                 color,
                 bookPage,
                 transcriptionContents,
-                editDate
+                editDate,
+                userEmail
             );
         } catch (error) {
             res.status(500).json({

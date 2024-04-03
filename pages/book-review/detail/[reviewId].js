@@ -12,9 +12,11 @@ import Button from '@/components/ui/button';
 
 import styles from '../../../styles/book-detail-page.module.css';
 import RemoveReviewFromList from '@/components/review/remove_review';
+import getUserEmail from '@/components/calculate/get-user-email';
+import { getSession } from 'next-auth/react';
 
 export default function ReviewDetail(props) {
-    const { review, book } = props;
+    const { review, book, userEmail } = props;
     const router = useRouter();
     const isbn = book.isbn;
     const kakaoApi = new KaKaoAPI();
@@ -35,9 +37,10 @@ export default function ReviewDetail(props) {
         router.push(`/book-review/edit-review/${review.review_id}`);
     };
 
-    const removeReview = () => {
+    const removeReview = async () => {
         if (confirm('리뷰를 삭제하시겠습니까?')) {
-            const result = RemoveReviewFromList(review.review_id);
+            const reviewId = review.review_id;
+            const result = await RemoveReviewFromList(reviewId, userEmail);
 
             if (result === 'success') {
                 alert('리뷰를 삭제했습니다.');
@@ -70,10 +73,22 @@ export default function ReviewDetail(props) {
 }
 
 export async function getServerSideProps(context) {
+    const session = await getSession(context);
     const { params } = context;
+
+    if (!session) {
+        return {
+            redirect: {
+                destination: '/',
+            },
+        };
+    }
+
+    const userEmail = getUserEmail(session.user.email);
+
     const reviewId = params.reviewId;
-    const review = await selectReviewByReviewId(reviewId);
-    const book = await selectBookByBookId(review[0].user_book_id);
+    const review = await selectReviewByReviewId(reviewId, userEmail);
+    const book = await selectBookByBookId(review[0].user_book_id, userEmail);
 
     let bookIsbn;
     if (book[0].book_isbn) {
@@ -92,6 +107,7 @@ export async function getServerSideProps(context) {
                 readDate: book[0].user_book_done_date,
                 isbn: bookIsbn,
             },
+            userEmail: userEmail,
         },
     };
 }

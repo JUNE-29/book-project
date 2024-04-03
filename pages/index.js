@@ -1,8 +1,19 @@
+import { signIn, useSession } from 'next-auth/react';
+
+import MainContent from '@/components/main/main-content';
+import { useRouter } from 'next/router';
+
 export default function Home() {
-    return (
-        <>
-            <h1>로그인 페이지 </h1>
-            <p> 로그인 되어있으면 Redirect</p>
-        </>
-    );
+    const { data: session } = useSession();
+    const router = useRouter();
+
+    async function logIn() {
+        return signIn();
+    }
+
+    if (session) {
+        router.push('/readBookList', undefined, { shallow: true });
+    } else {
+        return <MainContent logIn={logIn} />;
+    }
 }

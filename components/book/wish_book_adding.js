@@ -1,6 +1,6 @@
 import getToday from '../calculate/get-today';
 
-export default async function AddWishBook(bookTitle, bookIsbn) {
+export default async function AddWishBook(bookTitle, bookIsbn, userEmail) {
     const createdDate = getToday();
 
     if ((bookTitle, bookIsbn)) {
@@ -14,6 +14,7 @@ export default async function AddWishBook(bookTitle, bookIsbn) {
                     doneDate: '',
                     score: '',
                     status: 'wish',
+                    userEmail: userEmail,
                 }),
                 headers: {
                     'Content-Type': 'application/json',

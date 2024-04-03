@@ -1,17 +1,23 @@
 import { useRef, useState } from 'react';
+import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react';
 
 import { HexColorPicker } from 'react-colorful';
 
 import styles from './write_transcription.module.css';
 import Button from '../ui/button';
 import { calculateKoreanTime } from '../calculate/get-today';
-import { useRouter } from 'next/router';
+import getUserEmail from '../calculate/get-user-email';
 
 export default function WriteTranscription({ book, transcription }) {
     const { bookTitle, userBookId } = book;
+    const { data: session } = useSession();
     const router = useRouter();
     const [color, setColor] = useState();
     const [colorPicker, setColorPicker] = useState(false);
+
+    const userEmail = getUserEmail(session.user.email);
+
     const openColorPicker = () => {
         setColorPicker(true);
     };
@@ -46,6 +52,7 @@ export default function WriteTranscription({ book, transcription }) {
                         userBookId: userBookId,
                         bookTitle: bookTitle,
                         createdDate: createdDate,
+                        userEmail: userEmail,
                     }),
                     headers: {
                         'Content-Type': 'application/json',
@@ -74,6 +81,7 @@ export default function WriteTranscription({ book, transcription }) {
                         colorHexCode: color,
                         bookPage: bookPage,
                         editDate: createdDate,
+                        userEmail: userEmail,
                     }),
                     headers: {
                         'Content-Type': 'application/json',
@@ -81,7 +89,7 @@ export default function WriteTranscription({ book, transcription }) {
                 }).then((response) => {
                     if (response.status === 201) {
                         alert('감상문을 수정했습니다!');
-                        //router.push('/book-transcription');
+                        router.push('/book-transcription');
                     } else {
                         alert('수정에 실패했습니다.');
                     }

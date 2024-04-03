@@ -9,10 +9,12 @@ import RemoveBookfromBookList from '@/components/book/book_removal';
 import styles from '../../../styles/book-detail-page.module.css';
 import Button from '@/components/ui/button';
 import BackButton from '@/components/ui/back-button';
+import { getSession } from 'next-auth/react';
+import getUserEmail from '@/components/calculate/get-user-email';
 
 export default function wishBookDetail(props) {
     const router = useRouter();
-    const { book } = props;
+    const { book, userEmail } = props;
 
     if (book === null) {
         return (
@@ -53,7 +55,8 @@ export default function wishBookDetail(props) {
 
     const removeBook = async () => {
         if (confirm('책을 목록에서 삭제하시겠습니까?')) {
-            const result = await RemoveBookfromBookList(book.userBookId);
+            const userBookId = book.userBookId;
+            const result = await RemoveBookfromBookList(userBookId, userEmail);
 
             if (result === 'success') {
                 alert('책을 삭제했습니다.');
@@ -82,9 +85,20 @@ export default function wishBookDetail(props) {
 }
 
 export async function getServerSideProps(context) {
+    const session = await getSession(context);
     const { params } = context;
+
+    if (!session) {
+        return {
+            redirect: {
+                destination: '/',
+            },
+        };
+    }
+
+    const userEmail = getUserEmail(session.user.email);
     const userBookId = params.userBookId;
-    const book = await selectBookByBookId(userBookId);
+    const book = await selectBookByBookId(userBookId, userEmail);
 
     if (book[0] === undefined) {
         return {
@@ -104,6 +118,7 @@ export async function getServerSideProps(context) {
     }
     return {
         props: {
+            userEmail: userEmail,
             book: {
                 userBookId: userBookId,
                 isbn: bookIsbn,

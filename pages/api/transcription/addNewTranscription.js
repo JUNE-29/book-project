@@ -10,6 +10,7 @@ export default async function handler(req, res) {
         const userBookId = req.body.userBookId;
         const bookTitle = req.body.bookTitle;
         const createdDate = req.body.createdDate;
+        const userEmail = req.body.userEmail;
 
         if (
             !transcriptionId ||
@@ -35,7 +36,7 @@ export default async function handler(req, res) {
         };
 
         try {
-            await addTranscription(newTranscription);
+            await addTranscription(newTranscription, userEmail);
         } catch (error) {
             res.status(500).json({
                 message: 'Inserting data failed!',

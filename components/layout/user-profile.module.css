@@ -10,14 +10,24 @@
     display: flex;
 }
 
+.userPhoto {
+    width: 2rem;
+    height: 2rem;
+    border: solid 1px var(--main-color);
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+
 .downMenu {
     position: relative;
-    display: none;
+    display: flex;
+    align-items: center;
 }
 
 .downBox {
-    display: flex;
+    display: none;
     position: absolute;
+    top: 2.5rem;
     flex-direction: column;
     background-color: var(--white-color);
     width: 7.5rem;

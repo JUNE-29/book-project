@@ -6,8 +6,11 @@ import { useRouter } from 'next/router';
 import styles from '../../../styles/search-detail.module.css';
 import Button from '@/components/ui/button';
 import AddWishBook from '@/components/book/wish_book_adding';
+import { getSession } from 'next-auth/react';
+import getUserEmail from '@/components/calculate/get-user-email';
 
-export default function SearchBookDetail() {
+export default function SearchBookDetail(props) {
+    const { userEmail } = props;
     const router = useRouter();
     const isbn = router.query.isbn;
 
@@ -31,7 +34,11 @@ export default function SearchBookDetail() {
 
     const addWishBook = () => {
         if (book) {
-            AddWishBook(book.documents[0].title, book.documents[0].isbn);
+            AddWishBook(
+                book.documents[0].title,
+                book.documents[0].isbn,
+                userEmail
+            );
         }
     };
 
@@ -47,4 +54,23 @@ export default function SearchBookDetail() {
             </div>
         </div>
     );
+}
+
+export async function getServerSideProps(context) {
+    const session = await getSession(context);
+    if (!session) {
+        return {
+            redirect: {
+                destination: '/',
+            },
+        };
+    }
+
+    const userEmail = getUserEmail(session.user.email);
+
+    return {
+        props: {
+            userEmail: userEmail,
+        },
+    };
 }

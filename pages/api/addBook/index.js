@@ -11,8 +11,9 @@ export default async function handler(req, res) {
         const doneDate = req.body.doneDate;
         const starScore = req.body.score;
         const status = req.body.status;
+        const userEmail = req.body.userEmail;
 
-        if (!bookId || !bookIsbn || !bookTitle || !createdDate) {
+        if (!userEmail || !bookId || !bookIsbn || !bookTitle || !createdDate) {
             res.status(422).json({ massage: 'invaild new book data' });
             return;
         }
@@ -28,7 +29,7 @@ export default async function handler(req, res) {
         };
 
         try {
-            await addNewBook(newBook);
+            await addNewBook(newBook, userEmail);
         } catch (error) {
             res.status(500).json({
                 message: 'Inserting data failed!',

@@ -5,12 +5,17 @@ import styles from './write_review.module.css';
 import Button from '../ui/button';
 import { useRouter } from 'next/router';
 import { calculateKoreanTime } from '../calculate/get-today';
+import { useSession } from 'next-auth/react';
+import getUserEmail from '../calculate/get-user-email';
 
 export default function WriteReview({ book, review }) {
     const { bookTitle, userBookId } = book;
+    const { data: session } = useSession();
     const router = useRouter();
     const [emojiPicker, setEmojiPicker] = useState(false);
     const [emojiUniCode, setEmojiUniCode] = useState();
+
+    const userEmail = getUserEmail(session.user.email);
 
     const openEmojiPicker = () => {
         setEmojiPicker(true);
@@ -54,6 +59,7 @@ export default function WriteReview({ book, review }) {
                         userBookId: userBookId,
                         bookTitle: bookTitle,
                         createdDate: createdDate,
+                        userEmail: userEmail,
                     }),
                     headers: {
                         'Content-Type': 'application/json',
@@ -83,6 +89,7 @@ export default function WriteReview({ book, review }) {
                         reviewContent: reviewContent,
                         emojiUniCode: emojiUniCode,
                         editDate: createdDate,
+                        userEmail: userEmail,
                     }),
                     headers: {
                         'Content-Type': 'application/json',

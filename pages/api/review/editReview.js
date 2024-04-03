@@ -7,6 +7,7 @@ export default async function handler(req, res) {
         const reviewContent = req.body.reviewContent;
         const emojiUniCode = req.body.emojiUniCode;
         const editDate = req.body.editDate;
+        const userEmail = req.body.userEmail;
 
         if (
             !reviewId ||
@@ -25,7 +26,8 @@ export default async function handler(req, res) {
                 reviewTitle,
                 reviewContent,
                 editDate,
-                emojiUniCode
+                emojiUniCode,
+                userEmail
             );
         } catch (error) {
             res.status(500).json({

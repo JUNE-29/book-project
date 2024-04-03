@@ -7,6 +7,7 @@ import {
     getFilteredDoneBookCreatedYear,
     getFilteredDoneBookList,
 } from '@/lib/db-util';
+import { getSession } from 'next-auth/react';
 
 export default function FilteredReadBookList(props) {
     const { bookList, filteredYear } = props;
@@ -33,23 +34,50 @@ export default function FilteredReadBookList(props) {
     );
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
     const year = context.params.year;
-    const filteredDoneBookList = await getFilteredDoneBookList(year);
-    const filteredYear = await getFilteredDoneBookCreatedYear();
+    const session = await getSession(context);
+
+    const userEmail = getUserEmail(session.user.email);
+
+    const filteredDoneBookList = await getFilteredDoneBookList(year, userEmail);
+    const filteredYear = await getFilteredDoneBookCreatedYear(userEmail);
     return {
         props: { bookList: filteredDoneBookList, filteredYear: filteredYear },
     };
 }
 
-export async function getStaticPaths() {
-    const doneBookCreateYear = await getFilteredDoneBookCreatedYear();
-    const paths = doneBookCreateYear.map((yaer) => ({
-        params: { year: yaer },
-    }));
+// export async function getStaticProps(context) {
+//     const year = context.params.year;
+//     const session = await getSession(context);
 
-    return {
-        paths: paths,
-        fallback: true,
-    };
-}
+//     const email = session.user.email;
+//     const splitedUserEmail = email.split('.');
+//     const userEmail = splitedUserEmail[0];
+
+//     console.log(userEmail);
+
+//     const filteredDoneBookList = await getFilteredDoneBookList(year, userEmail);
+//     const filteredYear = await getFilteredDoneBookCreatedYear(userEmail);
+//     return {
+//         props: { bookList: filteredDoneBookList, filteredYear: filteredYear },
+//     };
+// }
+
+// export async function getStaticPaths(context) {
+//     const session = await getSession(context);
+
+//     const email = session.user.email;
+//     const splitedUserEmail = email.split('.');
+//     const userEmail = splitedUserEmail[0];
+
+//     const doneBookCreateYear = await getFilteredDoneBookCreatedYear(userEmail);
+//     const paths = doneBookCreateYear.map((yaer) => ({
+//         params: { year: yaer },
+//     }));
+
+//     return {
+//         paths: paths,
+//         fallback: true,
+//     };
+// }

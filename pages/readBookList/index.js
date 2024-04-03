@@ -1,8 +1,10 @@
 import BookList from '@/components/book/bookList';
 import BookCounting from '@/components/book/book_counting';
 import BookNavigation from '@/components/book/book_navigation';
+import getUserEmail from '@/components/calculate/get-user-email';
 import { getFilteredDoneBookCreatedYear } from '@/lib/book-utils';
-import { getDoneBooks } from '@/lib/db-util';
+import { checkUser, getDoneBooks } from '@/lib/db-util';
+import { getSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 
 export default function readBooksList(props) {
@@ -29,9 +31,20 @@ export default function readBooksList(props) {
     );
 }
 
-export async function getStaticProps() {
-    const books = await getDoneBooks();
-    const filteredYear = await getFilteredDoneBookCreatedYear();
+export async function getServerSideProps(context) {
+    const session = await getSession(context);
+    if (!session) {
+        return {
+            redirect: {
+                destination: '/',
+            },
+        };
+    }
+
+    const userEmail = getUserEmail(session.user.email);
+
+    const books = await getDoneBooks(userEmail);
+    const filteredYear = await getFilteredDoneBookCreatedYear(userEmail);
     return {
         props: { books: books, filteredYear: filteredYear },
     };

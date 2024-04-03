@@ -6,11 +6,15 @@ import { HeartRating } from '@/components/ui/rating';
 import Button from '@/components/ui/button';
 
 import styles from './done_book_adding.module.css';
+import { useSession } from 'next-auth/react';
+import getUserEmail from '../calculate/get-user-email';
 
 export default function AddDoneBook(props) {
     const { book } = props;
-
     const router = useRouter();
+    const { data: session } = useSession();
+
+    const userEmail = getUserEmail(session.user.email);
 
     const bookTitle = book.bookTitle;
     const bookIsbn = book.bookIsbn;
@@ -42,6 +46,7 @@ export default function AddDoneBook(props) {
                         doneDate: doneDate,
                         score: rate,
                         status: 'done',
+                        userEmail: userEmail,
                     }),
                     headers: {
                         'Content-Type': 'application/json',

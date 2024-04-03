@@ -10,6 +10,7 @@ export default async function handler(req, res) {
         const bookTitle = req.body.bookTitle;
         const emojiUniCode = req.body.emojiUniCode;
         const createdDate = req.body.createdDate;
+        const userEmail = req.body.userEmail;
 
         if (
             !reviewId ||
@@ -35,7 +36,7 @@ export default async function handler(req, res) {
         };
 
         try {
-            await addReview(newReview);
+            await addReview(newReview, userEmail);
         } catch (error) {
             res.status(500).json({
                 message: 'Inserting data failed!',

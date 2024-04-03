@@ -1,5 +1,7 @@
+import getUserEmail from '@/components/calculate/get-user-email';
 import WriteReview from '@/components/review/write_review';
 import { selectReviewByReviewId } from '@/lib/db-util';
+import { getSession } from 'next-auth/react';
 
 export default function EditReview(props) {
     const { review, book } = props;
@@ -8,9 +10,20 @@ export default function EditReview(props) {
 }
 
 export async function getServerSideProps(context) {
+    const session = await getSession(context);
     const { params } = context;
+
+    if (!session) {
+        return {
+            redirect: {
+                destination: '/',
+            },
+        };
+    }
+    const userEmail = getUserEmail(session.user.email);
+
     const reviewId = params.reviewId;
-    const review = await selectReviewByReviewId(reviewId);
+    const review = await selectReviewByReviewId(reviewId, userEmail);
 
     return {
         props: {

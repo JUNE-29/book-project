@@ -6,8 +6,11 @@ import styles from './done_book_updating.module.css';
 import { updateDoneBook } from '@/lib/db-util';
 import { useRouter } from 'next/router';
 import getToday from '../calculate/get-today';
+import { useSession } from 'next-auth/react';
+import getUserEmail from '../calculate/get-user-email';
 
 export default function UpdateDoneBook({ book }) {
+    const { data: session } = useSession();
     const {
         user_book_id: userBookId,
         book_title: bookTitle,
@@ -16,6 +19,7 @@ export default function UpdateDoneBook({ book }) {
 
     const router = useRouter();
 
+    const userEmail = getUserEmail(session.user.email);
     const [date, setDoneDate] = useState(doneDate);
 
     let rate = null;
@@ -36,7 +40,13 @@ export default function UpdateDoneBook({ book }) {
         // userBookId, rate, doneDate, updateDate
         try {
             if (userBookId && rate && doneDate && updatedDate) {
-                await updateDoneBook(userBookId, rate, doneDate, updatedDate);
+                await updateDoneBook(
+                    userBookId,
+                    rate,
+                    doneDate,
+                    updatedDate,
+                    userEmail
+                );
                 alert('책을 수정했습니다.');
                 router.push('/readBookList');
             } else {

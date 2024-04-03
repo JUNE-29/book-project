@@ -3,6 +3,8 @@ import { getAllReviews } from '@/lib/db-util';
 
 import styles from '../../styles/book-review-page.module.css';
 import { useRouter } from 'next/router';
+import { getSession } from 'next-auth/react';
+import getUserEmail from '@/components/calculate/get-user-email';
 
 export default function reviewList(props) {
     const { reviews } = props;
@@ -30,8 +32,20 @@ export default function reviewList(props) {
     );
 }
 
-export async function getStaticProps() {
-    const reviews = await getAllReviews();
+export async function getServerSideProps(context) {
+    const session = await getSession(context);
+    if (!session) {
+        return {
+            redirect: {
+                destination: '/',
+            },
+        };
+    }
+
+    const userEmail = getUserEmail(session.user.email);
+
+    const reviews = await getAllReviews(userEmail);
+
     return {
         props: { reviews: reviews },
     };
